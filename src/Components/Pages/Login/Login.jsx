@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
-  FacebookAuthProvider,
+  TwitterAuthProvider,
   GoogleAuthProvider,
   getAuth,
   signInWithPopup,
@@ -66,7 +66,7 @@ const Login = () => {
   };
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
-  const fbProvider = new FacebookAuthProvider();
+  const xProvider = new TwitterAuthProvider();
 
   const handleGoogleSignIn = () => {
     setRegisterError("");
@@ -82,10 +82,10 @@ const Login = () => {
       });
   };
 
-  const handleFacebookSignIn = () => {
+  const handleTwitterSignIn = () => {
     setRegisterError("");
     setSuccess("");
-    signInWithPopup(auth, fbProvider)
+    signInWithPopup(auth, xProvider)
       .then(() => {
         successToast();
         setSuccess("User Logged In Successfully");
@@ -163,11 +163,11 @@ const Login = () => {
             Google
           </button>
           <button
-            onClick={handleFacebookSignIn}
+            onClick={handleTwitterSignIn}
             type="button"
-            className=" text-blue-800 text-xl py-2 px-4 rounded-md"
+            className=" text-blue-400 text-xl py-2 px-4 rounded-md"
           >
-            Facebook
+            Twitter
           </button>
         </div>
         {registerError && (
