@@ -1,28 +1,49 @@
-import { Navbar } from "flowbite-react";
-import { Link } from "react-router-dom";
+import { Navbar, DarkThemeToggle, Flowbite } from "flowbite-react";
+import { Link, useLocation } from "react-router-dom";
 
 const NavigationBar = () => {
+  const location = new useLocation();
   return (
     <>
-      <Navbar fluid rounded>
+      <div>
+        <h1 className="text-center md:pt-12 md:pb-6 font-roboto md:text-6xl">
+          KHAN BLOG
+        </h1>
+      </div>
+      <Navbar fluid rounded className="font-roboto">
         <Navbar.Brand>
-          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            Flowbite React
-          </span>
+          <div className="flex gap-4">
+            <Link to={"/login"}>Login</Link>
+            <Link to={"/register"}>Register</Link>
+            <Flowbite>
+              <DarkThemeToggle className="p-0" />
+            </Flowbite>
+          </div>
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse>
           <Link to={"/"}>
-            <Navbar.Link>Home</Navbar.Link>
+            <Navbar.Link active={location.pathname === "/"}>Home</Navbar.Link>
           </Link>
-          <Link to={"/login"}>
-            <Navbar.Link>About</Navbar.Link>
+          <Link to={"/add-blog"}>
+            <Navbar.Link active={location.pathname === "/add-blog"}>
+              Add Blog
+            </Navbar.Link>
           </Link>
-          <Link to={"/login"}>
-            <Navbar.Link>Login</Navbar.Link>
+          <Link to={"/all-blogs"}>
+            <Navbar.Link active={location.pathname === "/all-blogs"}>
+              All Blogs
+            </Navbar.Link>
           </Link>
-          <Link to={"/register"}>
-            <Navbar.Link>Register</Navbar.Link>
+          <Link to={"/featured-blogs"}>
+            <Navbar.Link active={location.pathname === "/featured-blogs"}>
+              Featured Blogs
+            </Navbar.Link>
+          </Link>
+          <Link to={"/wishlist"}>
+            <Navbar.Link active={location.pathname === "/wishlist"}>
+              Wishlist
+            </Navbar.Link>
           </Link>
         </Navbar.Collapse>
       </Navbar>

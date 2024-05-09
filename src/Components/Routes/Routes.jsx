@@ -4,12 +4,16 @@ import Root from "../Layouts/Root";
 import Error from "../Pages/Error/Error";
 import Home from "../Pages/Home/Home";
 import Register from "../Pages/Register/Register";
+import AddBlog from "../Pages/AddBlog/AddBlog";
+import AllBlogs from "../Pages/AllBlogs/AllBlogs";
+import FeaturedBlogs from "../Pages/FeaturedBlogs/FeaturedBlogs";
+import Wishlist from "../Pages/Wishlist/Wishlist";
 
 const routes = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
-    errorElement:<Error></Error>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: "/",
@@ -23,9 +27,24 @@ const routes = createBrowserRouter([
         path: "/register",
         element: <Register></Register>,
       },
+      {
+        path: "/add-blog",
+        element: <AddBlog></AddBlog>,
+      },
+      {
+        path: "/all-blogs",
+        element: <AllBlogs></AllBlogs>,
+      },
+      {
+        path: "/featured-blogs",
+        element: <FeaturedBlogs></FeaturedBlogs>,
+      },
+      {
+        path: "/wishlist",
+        element: <Wishlist></Wishlist>,
+      },
     ],
   },
 ]);
-
 
 export default routes;
