@@ -47,12 +47,16 @@ const Login = () => {
       passErrorToast("Length must be at least 6 character");
       return;
     } else if (!/[A-Z]/.test(password)) {
-      passErrorToast("Must have an Uppercase letter in the password");
+      passErrorToast("Must have a Capital letter in the password");
       return;
-    } else if (!/[a-z]/.test(password)) {
-      passErrorToast("Must have a Lowercase letter in the password");
+    } else if (!/\d/.test(password)) {
+      passErrorToast("Must have a Numeric character in the password");
+      return;
+    } else if (!/[^A-Za-z0-9]/.test(password)) {
+      passErrorToast("Must have a Special character in the password");
       return;
     }
+
     logIn(email, password)
       .then(() => {
         navigate(location?.state ? location.state : "/login");
