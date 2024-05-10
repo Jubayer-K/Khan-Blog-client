@@ -31,8 +31,8 @@ const NavigationBar = () => {
           KHAN BLOG
         </h1>
       </div>
-      <div className="sticky top-0 z-50 w-full bg-white dark:bg-gray-800">
-        <Navbar fluid rounded>
+      <div className="sticky top-0 z-50 w-full bg-white dark:bg-gray-800 ">
+        <Navbar fluid rounded  className="md:w-2/3 mx-auto">
           <Navbar.Brand href="/">
             <h1 className="text-start font-thin mr-6 text-xl hidden md:block">
               KHAN BLOG
@@ -49,7 +49,7 @@ const NavigationBar = () => {
                       <div className="space-y-1 font-medium dark:text-white">
                         <div>{user.displayName}</div>
                         <div className="text-sm text-gray-500 dark:text-gray-400">
-                          {user.email}
+                          {user?.email}
                         </div>
                       </div>
                     </Avatar>
@@ -59,7 +59,7 @@ const NavigationBar = () => {
                 <Dropdown.Header>
                   <span className="block text-sm">{user.displayName}</span>
                   <span className="block truncate text-sm font-medium">
-                    {user.email}
+                    {user?.email}
                   </span>
                 </Dropdown.Header>
                 <Link to={"/wishlist"}>
