@@ -9,6 +9,8 @@ export default {
         roboto: "'Roboto', sans-serif",
         nunito: "'Nunito Sans', sans-serif",
         raleway: "'Raleway', sans-serif",
+        indie: "'Indie Flower', cursive",
+        karla: "'Karla', sans-serif",
       },
     },
   },
