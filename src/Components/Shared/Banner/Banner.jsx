@@ -5,13 +5,20 @@ import "swiper/css";
 import "swiper/css/effect-creative";
 import "swiper/css/pagination";
 
+// import required modules
+import { Autoplay } from "swiper/modules";
 
 const Banner = () => {
   return (
     <div className="banner font-nunito">
       <Swiper
         grabCursor={true}
+        modules={[Autoplay]}
         className="mySwiper"
+        autoplay={{
+          delay: 2000,
+          disableOnInteraction: false,
+        }}
       >
         <SwiperSlide>
           <img className="dark:invert" src="/Banner2.png" alt="" />
