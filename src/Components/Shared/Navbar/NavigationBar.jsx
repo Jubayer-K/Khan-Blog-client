@@ -4,6 +4,7 @@ import {
   Button,
   Flowbite,
   Avatar,
+  Dropdown,
 } from "flowbite-react";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProviders";
@@ -12,8 +13,8 @@ import { toast } from "react-toastify";
 
 const NavigationBar = () => {
   const { user, logOut } = useContext(AuthContext);
-  console.log(user);
-  const logOutToast = () => toast("User Logged out Successfully");
+  const logOutToast = () =>
+    toast.success(` ${user.displayName} has been logged out`);
   const handleLogOut = () => {
     logOut()
       .then(() => {
@@ -26,21 +27,52 @@ const NavigationBar = () => {
   return (
     <>
       <div>
-        <h1 className="font-thin text-center md:pt-12 md:pb-6 py-6 md:text-6xl">
+        <h1 className="font-thin font-nunito text-center md:pt-12 md:pb-6 py-6 md:text-6xl">
           KHAN BLOG
         </h1>
       </div>
       <div className="sticky top-0 z-50 w-full bg-white dark:bg-gray-800">
-        <Navbar className="font-thin text-sm md:w-1/2 mx-auto">
-          <Navbar.Brand>
+        <Navbar fluid rounded>
+          <Navbar.Brand href="/">
+            <h1 className="text-start font-thin mr-6 text-xl hidden md:block">
+              KHAN BLOG
+            </h1>
+          </Navbar.Brand>
+          <div className="flex md:order-2">
             {user ? (
-              <Button
-                onClick={handleLogOut}
-                outline
-                gradientDuoTone="redToYellow"
+              <Dropdown
+                arrowIcon={false}
+                inline
+                label={
+                  user ? (
+                    <Avatar img={user.photoURL} rounded className="text-start">
+                      <div className="space-y-1 font-medium dark:text-white">
+                        <div>{user.displayName}</div>
+                        <div className="text-sm text-gray-500 dark:text-gray-400">
+                          {user.email}
+                        </div>
+                      </div>
+                    </Avatar>
+                  ) : undefined
+                }
               >
-                Logout
-              </Button>
+                <Dropdown.Header>
+                  <span className="block text-sm">{user.displayName}</span>
+                  <span className="block truncate text-sm font-medium">
+                    {user.email}
+                  </span>
+                </Dropdown.Header>
+                <Link to={"/wishlist"}>
+                  <Dropdown.Item>Wishlist</Dropdown.Item>
+                </Link>
+                <Dropdown.Divider />
+                <Dropdown.Item onClick={handleLogOut}>Log out</Dropdown.Item>
+                <div className="flex justify-center items-center md:hidden">
+                  <Flowbite>
+                    <DarkThemeToggle />
+                  </Flowbite>
+                </div>
+              </Dropdown>
             ) : (
               <div className="flex gap-4">
                 <Link to={"/login"}>
@@ -55,8 +87,8 @@ const NavigationBar = () => {
                 </Link>
               </div>
             )}
-          </Navbar.Brand>
-          <Navbar.Toggle />
+            <Navbar.Toggle />
+          </div>
           <Navbar.Collapse>
             <Link to={"/"}>
               <Navbar.Link active={location.pathname === "/"}>HOME</Navbar.Link>
@@ -81,24 +113,19 @@ const NavigationBar = () => {
                 WISHLIST
               </Navbar.Link>
             </Link>
-          </Navbar.Collapse>
-          <div className="flex justify-center items-center gap-4">
-            <Flowbite>
-              <DarkThemeToggle className="p-0" />
-            </Flowbite>
-            {user ? (
-              <Avatar img={user.photoURL} rounded>
-                <div className="space-y-1 font-medium dark:text-white">
-                  <div>{user.displayName}</div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">
-                    {user.email}
-                  </div>
-                </div>
-              </Avatar>
-            ) : (
-              ""
+            {user ? undefined : (
+              <div className="justify-center items-center flex p-2 md:hidden">
+                <Flowbite>
+                  <DarkThemeToggle />
+                </Flowbite>
+              </div>
             )}
-          </div>
+            <div className=" md:flex hidden">
+              <Flowbite>
+                <DarkThemeToggle className="p-0" />
+              </Flowbite>
+            </div>
+          </Navbar.Collapse>
         </Navbar>
       </div>
     </>
