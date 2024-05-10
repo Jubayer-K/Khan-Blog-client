@@ -15,7 +15,7 @@ const Footer = () => {
           <div className="w-full">
             <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
               <div>
-                <h1 className="font-thin text-center font-raleway md:pt-12 md:pb-6 py-6 md:text-4xl">
+                <h1 className="font-thin text-center font-raleway md:pt-12 md:pb-6 py-6 md:text-4xl text-2xl">
                   KHAN BLOG
                 </h1>
               </div>

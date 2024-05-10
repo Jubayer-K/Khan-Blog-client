@@ -27,7 +27,7 @@ const NavigationBar = () => {
   return (
     <>
       <div>
-        <h1 className="font-thin font-nunito text-center md:pt-12 md:pb-6 py-6 md:text-6xl">
+        <h1 className="font-thin font-nunito text-center md:pt-12 md:pb-6 py-6 md:text-6xl text-3xl">
           KHAN BLOG
         </h1>
       </div>
@@ -128,6 +128,7 @@ const NavigationBar = () => {
           </Navbar.Collapse>
         </Navbar>
       </div>
+      
     </>
   );
 };
