@@ -1,15 +1,43 @@
 import { Button } from "flowbite-react";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const BlogDetails = () => {
   const { user } = useContext(AuthContext);
   const [comment, setComment] = useState("");
+  const [comments, setComments] = useState([]);
   const blog = useLoaderData();
-  const { title, image_url, category, short_description, long_description,_id } =
-    blog;
+  const {
+    title,
+    image_url,
+    category,
+    short_description,
+    long_description,
+    _id,
+    author_email,
+  } = blog;
+
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/comments`
+        );
+        // Filter comments for the current blog based on their blogId
+        const filteredComments = response.data.filter(
+          (comment) => comment.blogId === _id
+        );
+        setComments(filteredComments);
+      } catch (error) {
+        console.error("Error fetching comments:", error);
+      }
+    };
+
+    fetchComments();
+  }, [_id]);
 
   const handleComment = async (e) => {
     e.preventDefault();
@@ -33,12 +61,15 @@ const BlogDetails = () => {
         `${import.meta.env.VITE_API_URL}/comments`,
         commentData
       );
-      console.log(data);
+      setComments([...comments, data]);
+      setComment("");
+      toast.success("Comment Posted");
     } catch (err) {
       console.log(err);
     }
   };
 
+  const isAuthor = author_email === user.email;
   return (
     <>
       <div className="overflow-hidden py-24 sm:py-32 mx-auto">
@@ -74,51 +105,61 @@ const BlogDetails = () => {
         </div>
       </div>
       {/* comment box */}
-      <div className=" comment-box">
-        <div className="max-w-2xl mx-auto px-4">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
-              Comments (20)
-            </h2>
-          </div>
-          <form className="mb-6" onSubmit={handleComment}>
-            <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-              <label htmlFor="comment" className="sr-only">
-                Your comment
-              </label>
-              <textarea
-                id="comment"
-                name="comment"
-                value={comment}
-                rows="6"
-                className="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
-                placeholder="Write a comment..."
-                onChange={(e) => setComment(e.target.value)}
-                required
-              ></textarea>
-            </div>
-            <Button type="submit">Post comment</Button>
-          </form>
-          <article className="p-6 text-base bg-white rounded-lg dark:bg-gray-900">
-            <footer className="flex justify-between items-center mb-2">
-              <div className="flex items-center">
-                <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
-                  <img
-                    className="mr-2 w-6 h-6 rounded-full"
-                    src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
-                    alt="Michael Gough"
-                  />
-                  Michael Gough
-                </p>
+      {!isAuthor ? (
+        <div className=" comment-box">
+          <div className="max-w-2xl mx-auto px-4">
+            <form className="mb-6" onSubmit={handleComment}>
+              <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                <label htmlFor="comment" className="sr-only">
+                  Your comment
+                </label>
+                <textarea
+                  id="comment"
+                  name="comment"
+                  value={comment}
+                  rows="6"
+                  className="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+                  placeholder="Write a comment..."
+                  onChange={(e) => setComment(e.target.value)}
+                  required
+                ></textarea>
               </div>
-            </footer>
-            <p className="text-gray-500 dark:text-gray-400">
-              Very straight-to-point article. Really worth time reading. Thank
-              you! But tools are just the instruments for the UX designers. The
-              knowledge of the design tools are as important as the creation of
-              the design strategy.
-            </p>
-          </article>
+              <Button  outline gradientDuoTone="tealToLime" type="submit">Post comment</Button>
+            </form>
+          </div>
+        </div>
+      ) : (
+        <div className="text-center"> Can not comment on own blog </div>
+      )}
+      <div className="max-w-2xl mx-auto px-4">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
+            Comments ({comments.length})
+          </h2>
+        </div>
+        <div className="flex flex-col gap-4">
+          {comments.map((comment) => (
+            <article
+              key={comment._id}
+              className="p-6 text-base bg-gray-200 rounded-lg dark:bg-gray-900"
+            >
+              <footer className="flex justify-between items-center mb-2">
+                <div className="flex items-center">
+                  <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
+                    <img
+                      className="mr-2 w-6 h-6 rounded-full"
+                      src={comment.commenterImage}
+                      alt={comment.commenterName}
+                    />
+                    {comment.commenterName}
+                  </p>
+                </div>
+              </footer>
+              <p className="text-gray-500 dark:text-gray-400">
+                {comment.comment}
+              </p>
+            </article>
+          ))}
         </div>
       </div>
     </>
