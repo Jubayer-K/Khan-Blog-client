@@ -13,9 +13,10 @@ import Lottie from "lottie-react";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import app from "../../../firebase/firebase.config";
 import animation from "../../../assets/login.json";
-import { Button } from "flowbite-react";
+import { Button} from "flowbite-react";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 import { FaGoogle, FaTwitter } from "react-icons/fa";
+import LoadingSkeleton from "../../Shared/LoadingSkeleton/LoadingSkeleton";
 
 const Login = () => {
   const successToast = () => toast.success("User Logged In Successfully");
@@ -34,7 +35,7 @@ const Login = () => {
     }
   }, [navigate, user]);
 
-  if (user || loading) {
+  if (user) {
     return;
   }
 
@@ -107,7 +108,8 @@ const Login = () => {
       <Helmet>
         <title>Khan Blog | Log in</title>
       </Helmet>
-      <div className=" flex flex-col lg:flex-row items-center mx-auto my-12">
+      <div className="flex justify-center items-center text-center">
+        {loading ? <LoadingSkeleton></LoadingSkeleton> : <div className=" flex flex-col lg:flex-row items-center mx-auto my-12">
         <div className="shadow-2xl mx-auto flex flex-col md:flex-row rounded-xl dark:shadow-gray-600 md:w-2/3">
           <div className="w-full">
             <img className="h-full object-cover" src="/login.png" alt="" />
@@ -207,7 +209,11 @@ const Login = () => {
             )}
           </div>
         </div>
+      </div>}
       </div>
+    
+        
+      
     </>
   );
 };

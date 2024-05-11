@@ -46,9 +46,9 @@ const NavigationBar = () => {
                 inline
                 label={
                   user ? (
-                    <Avatar img={user.photoURL} rounded className="text-start">
+                    <Avatar img={user?.photoURL} rounded className="text-start">
                       <div className="space-y-1 font-medium dark:text-white">
-                        <div>{user.displayName}</div>
+                        <div>{user?.displayName}</div>
                         <div className="text-sm text-gray-500 dark:text-gray-400">
                           {user?.email}
                         </div>
@@ -58,7 +58,7 @@ const NavigationBar = () => {
                 }
               >
                 <Dropdown.Header>
-                  <span className="block text-sm">{user.displayName}</span>
+                  <span className="block text-sm">{user?.displayName}</span>
                   <span className="block truncate text-sm font-medium">
                     {user?.email}
                   </span>

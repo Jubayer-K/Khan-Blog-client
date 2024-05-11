@@ -1,31 +1,44 @@
-import {
-  CloudArrowUpIcon,
-  LockClosedIcon,
-  ServerIcon,
-} from "@heroicons/react/20/solid";
 import { Button } from "flowbite-react";
+import { useContext, useState } from "react";
+import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../../Providers/AuthProviders";
+import axios from "axios";
 
 const BlogDetails = () => {
-  const features = [
-    {
-      name: "Push to deploy.",
-      description:
-        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
-      icon: CloudArrowUpIcon,
-    },
-    {
-      name: "SSL certificates.",
-      description:
-        "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.",
-      icon: LockClosedIcon,
-    },
-    {
-      name: "Database backups.",
-      description:
-        "Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.",
-      icon: ServerIcon,
-    },
-  ];
+  const { user } = useContext(AuthContext);
+  const [comment, setComment] = useState("");
+  const blog = useLoaderData();
+  const { title, image_url, category, short_description, long_description,_id } =
+    blog;
+
+  const handleComment = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const comment = form.comment.value;
+    const commenterEmail = user.email;
+    const commenterImage = user.photoURL;
+    const commenterName = user.displayName;
+    const blogId = _id;
+
+    const commentData = {
+      blogId,
+      commenterName,
+      commenterEmail,
+      commenterImage,
+      comment,
+    };
+
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/comments`,
+        commentData
+      );
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <div className="overflow-hidden py-24 sm:py-32 mx-auto">
@@ -33,36 +46,26 @@ const BlogDetails = () => {
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
             <div className="lg:pr-8 lg:pt-4">
               <div className="lg:max-w-lg">
-                <h2 className="text-base font-semibold leading-7 text-indigo-600">
-                  Deploy faster
+                <h2 className="text-base font-semibold leading-7 dark:text-lime-200 text-lime-600">
+                  {category}
                 </h2>
-                <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                  A better workflow
+                <p className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+                  {title}
                 </p>
-                <p className="mt-6 text-lg leading-8 text-gray-600">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Maiores impedit perferendis suscipit eaque, iste dolor
-                  cupiditate blanditiis ratione.
+                <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-200">
+                  {short_description}
                 </p>
-                <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
-                  {features.map((feature) => (
-                    <div key={feature.name} className="relative pl-9">
-                      <dt className="inline font-semibold text-gray-900">
-                        <feature.icon
-                          className="absolute left-1 top-1 h-5 w-5 text-indigo-600"
-                          aria-hidden="true"
-                        />
-                        {feature.name}
-                      </dt>{" "}
-                      <dd className="inline">{feature.description}</dd>
-                    </div>
-                  ))}
+                <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 dark:text-gray-200 lg:max-w-none">
+                  <div className="relative pl-9">
+                    <dt className="inline font-semibold text-gray-900"></dt>
+                    <dd className="inline">{long_description}</dd>
+                  </div>
                 </dl>
               </div>
             </div>
             <img
-              src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png"
-              alt="Product screenshot"
+              src={image_url}
+              alt="blog image"
               className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
               width={2432}
               height={1442}
@@ -78,16 +81,19 @@ const BlogDetails = () => {
               Comments (20)
             </h2>
           </div>
-          <form className="mb-6">
+          <form className="mb-6" onSubmit={handleComment}>
             <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
               <label htmlFor="comment" className="sr-only">
                 Your comment
               </label>
               <textarea
                 id="comment"
+                name="comment"
+                value={comment}
                 rows="6"
                 className="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
                 placeholder="Write a comment..."
+                onChange={(e) => setComment(e.target.value)}
                 required
               ></textarea>
             </div>
