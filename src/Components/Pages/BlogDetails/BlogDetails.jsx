@@ -1,6 +1,6 @@
 import { Button } from "flowbite-react";
 import { useContext, useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -93,6 +93,14 @@ const BlogDetails = () => {
                   </div>
                 </dl>
               </div>
+
+              {isAuthor ? (
+                <div className="flex justify-center items-center my-12">
+                  <Link to={`/update/${_id}`}>
+                    <Button gradientDuoTone="tealToLime">Update Blog</Button>
+                  </Link>
+                </div>
+              ) : null}
             </div>
             <img
               src={image_url}
@@ -104,6 +112,7 @@ const BlogDetails = () => {
           </div>
         </div>
       </div>
+
       {/* comment box */}
       {!isAuthor ? (
         <div className=" comment-box">
@@ -124,7 +133,9 @@ const BlogDetails = () => {
                   required
                 ></textarea>
               </div>
-              <Button  outline gradientDuoTone="tealToLime" type="submit">Post comment</Button>
+              <Button outline gradientDuoTone="tealToLime" type="submit">
+                Post comment
+              </Button>
             </form>
           </div>
         </div>

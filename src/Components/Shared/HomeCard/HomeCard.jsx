@@ -18,9 +18,13 @@ const HomeCard = ({ blog }) => {
         </p>
         <div className="flex gap-4 items-center">
           <Link to={`/blog-details/${_id}`}>
-            <Button>View Details</Button>
+            <Button outline gradientDuoTone="tealToLime">
+              View Details
+            </Button>
           </Link>
-          <Button>Wishlist</Button>
+          <Button outline gradientDuoTone="purpleToBlue">
+            Wishlist
+          </Button>
         </div>
       </Card>
     </>
