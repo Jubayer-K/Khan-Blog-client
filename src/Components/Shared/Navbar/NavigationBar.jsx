@@ -26,13 +26,14 @@ const NavigationBar = () => {
   const location = new useLocation();
   return (
     <>
-      <div>
-        <h1 className="font-thin font-nunito text-center md:pt-12 md:pb-6 py-6 md:text-6xl text-3xl">
+      <div className="text-center md:pt-12 md:pb-6 py-6">
+        <h1 className="font-thin font-nunito md:text-6xl text-3xl py-2">
           KHAN BLOG
         </h1>
+          <p className="font-karla">Where Ideas Flourish & Minds Expand</p>
       </div>
       <div className="sticky top-0 z-50 w-full bg-white dark:bg-gray-800 ">
-        <Navbar fluid rounded  className="md:w-2/3 mx-auto">
+        <Navbar fluid rounded className="md:w-2/3 mx-auto">
           <Navbar.Brand href="/">
             <h1 className="text-start font-thin mr-6 text-xl hidden md:block">
               KHAN BLOG
@@ -128,7 +129,6 @@ const NavigationBar = () => {
           </Navbar.Collapse>
         </Navbar>
       </div>
-      
     </>
   );
 };

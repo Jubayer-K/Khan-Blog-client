@@ -1,17 +1,25 @@
 import { Button } from "flowbite-react";
+import Lottie from "lottie-react";
 import { Link } from "react-router-dom";
+import animation from "../../../assets/erroranimation.json";
 
 const Error = () => {
   return (
     <>
       <main className="grid min-h-full font-raleway place-items-center dark:bg-gray-800 px-6 py-24 sm:py-32 lg:px-8">
-      <div>
-        <h1 className="font-thin text-center md:pt-12 md:pb-6 py-6 md:text-6xl text-3xl">
-          KHAN BLOG
-        </h1>
-      </div>
+        <div>
+          <h1 className="font-thin text-center md:pt-12 md:pb-6 py-6 md:text-6xl text-3xl">
+            KHAN BLOG
+          </h1>
+        </div>
         <div className="text-center">
+         
           <p className="text-4xl font-semibold text-lime-400">404</p>
+          <Lottie
+            className="lg:w-2/3 w-64 drop-shadow-2xl mx-auto"
+            animationData={animation}
+            loop={false}
+          ></Lottie>
           <h1 className="mt-4 text-3xl font-bold tracking-tight font-indie text-gray-900 sm:text-5xl">
             Page not found
           </h1>
@@ -19,11 +27,11 @@ const Error = () => {
             Sorry, we couldn’t find the page you’re looking for.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-          <Link to={"/"}>
-                  <Button outline gradientDuoTone="tealToLime">
-                    Go Back to Home
-                  </Button>
-                </Link>
+            <Link to={"/"}>
+              <Button outline gradientDuoTone="tealToLime">
+                Go Back to Home
+              </Button>
+            </Link>
             <a href="#" className="text-sm font-semibold text-gray-900">
               Contact support <span aria-hidden="true">&rarr;</span>
             </a>
