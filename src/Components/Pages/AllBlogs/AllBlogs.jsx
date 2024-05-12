@@ -35,9 +35,9 @@ const AllBlogs = () => {
       <Helmet>
         <title>Khan Blog | All Blogs</title>
       </Helmet>
-      <div className="max-w-7xl mx-auto my-12 flex justify-between">
-        <h1 className="md:text-6xl text-4xl font-thin">All Blogs</h1>
-        <div className="flex gap-4">
+      <div className="max-w-7xl mx-auto my-12 flex flex-col gap-4 md:flex-row justify-between">
+        <h1 className="md:text-6xl md:text-start text-center text-4xl font-thin">All Blogs</h1>
+        <div className="flex flex-col md:flex-row mx-auto md:mx-0 gap-4">
           <div>
             <input
               type="text"

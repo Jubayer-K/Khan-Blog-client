@@ -21,13 +21,13 @@ const Banner = () => {
         }}
       >
         <SwiperSlide>
-          <img className="dark:invert" src="/Banner2.png" alt="" />
+          <img src="/Banner2.png" alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img className="dark:invert" src="/Banner1.png" alt="" />
+          <img src="/Banner1.png" alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img className="dark:invert" src="/Banner3.png" alt="" />
+          <img src="/Banner3.png" alt="" />
         </SwiperSlide>
       </Swiper>
     </div>
