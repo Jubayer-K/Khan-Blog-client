@@ -125,7 +125,7 @@ const Login = () => {
             </div>
             <form className="md:max-w-lg mx-auto" onSubmit={handleLogin}>
               <div className="mb-4">
-                <label htmlFor="email" className="block text-sm font-semibold leading-6">
+                <label htmlFor="email" className="block text-start text-sm font-semibold leading-6">
                   Email
                 </label>
                 <input
@@ -137,7 +137,7 @@ const Login = () => {
                 />
               </div>
               <div className="mb-4 relative">
-                <label htmlFor="password" className="block text-sm font-semibold leading-6">
+                <label htmlFor="password" className="block text-start text-sm font-semibold leading-6">
                   Password
                 </label>
                 <input
