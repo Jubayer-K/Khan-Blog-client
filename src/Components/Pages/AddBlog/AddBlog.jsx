@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import { useContext } from "react";
+import { Helmet } from "react-helmet-async";
 
 const AddBlog = () => {
   const { user } = useContext(AuthContext);
@@ -56,7 +57,13 @@ const AddBlog = () => {
   };
 
   return (
-    <div>
+    <>
+    <Helmet>
+        <title>Khan Blog | Add Blog</title>
+      </Helmet>
+      <div className="max-w-7xl mx-auto my-12">
+        <h1 className="md:pl-8 md:text-6xl text-4xl font-thin">Add Blog</h1>
+      </div>
       <div className="flex flex-col lg:flex-row-reverse items-center mx-auto my-12 gap-5 shadow-2xl rounded-xl max-w-7xl">
         <div className="w-full">
           <img
@@ -162,19 +169,23 @@ const AddBlog = () => {
             </div>
             <div className="mt-6 flex items-center justify-end gap-x-6">
               <Link to={"/"}>
-                <button
+                <Button
+                  outline
+                  gradientDuoTone="redToYellow"
                   type="button"
                   className="text-sm font-semibold leading-6  "
                 >
                   Cancel
-                </button>
+                </Button>
               </Link>
-              <Button type="submit">Add Blog</Button>
+              <Button gradientDuoTone="tealToLime" type="submit">
+                Add Blog
+              </Button>
             </div>
           </form>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

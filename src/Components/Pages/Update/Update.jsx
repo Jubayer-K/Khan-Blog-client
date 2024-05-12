@@ -178,7 +178,7 @@ const Update = () => {
                   Cancel
                 </button>
               </Link>
-              <Button type="submit">Update</Button>
+              <Button outline gradientDuoTone="tealToLime" type="submit">Update</Button>
             </div>
           </form>
         </div>

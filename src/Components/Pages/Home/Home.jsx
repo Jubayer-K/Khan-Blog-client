@@ -21,10 +21,10 @@ const Home = () => {
               <HomeCard key={blog._id} blog={blog}></HomeCard>
             ))}
           </div>
-      <TopBloggers blogs={blogs}></TopBloggers>
       <div className=" mx-auto max-w-screen-2xl md:py-12 py-6">
         <Banner></Banner>
       </div>
+      <TopBloggers blogs={blogs}></TopBloggers>
       <Newsletter></Newsletter>
     </>
   );

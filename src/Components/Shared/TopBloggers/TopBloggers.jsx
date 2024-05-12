@@ -18,12 +18,12 @@ const TopBloggers = ({ blogs }) => {
             role="list"
             className="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2"
           >
-            {blogs.slice(0, 6).map((blog) => (
+            {blogs.slice(-6).map((blog) => (
               <li key={blog.author_email}>
                 <div className="flex items-center gap-x-6">
                   <img
                     className="h-16 w-16 rounded-full"
-                    src={blog.author_email}
+                    src={blog.author_image}
                     alt=""
                   />
                   <div>
