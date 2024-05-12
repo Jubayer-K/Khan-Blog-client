@@ -26,8 +26,6 @@ const Update = () => {
       const longDescription = form.long_description.value;
       const updatedBlog = {title,image,category,shortDescription,longDescription};
 
-      console.log(updatedBlog);
-
     try {
       const response = await axios.put(
         `${import.meta.env.VITE_API_URL}/blogs/${_id}`,
@@ -41,18 +39,15 @@ const Update = () => {
 
       if (response.status === 200 && response.data.modifiedCount > 0) {
         toast.success("Blog Updated Successfully");
-        // Optionally, you can update the local blog state with the updated data
       } else {
         toast.error("Update Unsuccessful");
       }
     } catch (error) {
-      console.error("Error updating item:", error);
       toast.error("An error occurred while updating the item");
     }
   };
   return (
     <>
-      This is {title} update page
       <div className="flex flex-col lg:flex-row items-center mx-auto my-12 gap-5 shadow-2xl rounded-xl max-w-7xl">
       <div className="w-full">
             <img className="h-full object-cover" src={image_url} alt="blog Image" />
