@@ -6,12 +6,26 @@ import { Helmet } from "react-helmet-async";
 const AllBlogs = () => {
   const allBlogs = useLoaderData();
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredBlogsByCategory =
+    selectedCategory === "all"
+      ? allBlogs
+      : allBlogs.filter((blog) => blog.category === selectedCategory);
 
   const filteredBlogs =
-    selectedCategory === "all" ? allBlogs : allBlogs.filter((blog) => blog.category === selectedCategory);
+    searchQuery === ""
+      ? filteredBlogsByCategory
+      : filteredBlogsByCategory.filter((blog) =>
+          blog.title.toLowerCase().includes(searchQuery.toLowerCase())
+        );
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
+  };
+
+  const handleSearchInputChange = (event) => {
+    setSearchQuery(event.target.value);
   };
 
   const categories = [...new Set(allBlogs.map((blog) => blog.category))];
@@ -23,23 +37,34 @@ const AllBlogs = () => {
       </Helmet>
       <div className="max-w-7xl mx-auto my-12 flex justify-between">
         <h1 className="md:text-6xl text-4xl font-thin">All Blogs</h1>
-        <div className="">
-        <select
-          value={selectedCategory}
-          onChange={handleCategoryChange}
-          className="block border dark:bg-gray-800 border-gray-300 rounded-md shadow-sm focus:ring-lime-500 focus:border-lime-500 sm:text-sm"
-        >
-          <option value="all">All Categories</option>
-          {categories.map((category) => (
-            <option key={category} value={category}>
-              {category}
-            </option>
-          ))}
-        </select>
+        <div className="flex gap-4">
+          <div>
+            <input
+              type="text"
+              placeholder="Search by title..."
+              value={searchQuery}
+              onChange={handleSearchInputChange}
+              className="block border dark:bg-gray-800 border-gray-300 rounded-md shadow-sm focus:ring-lime-500 focus:border-lime-500 sm:text-sm"
+            />
+          </div>
+          <div>
+            <select
+              value={selectedCategory}
+              onChange={handleCategoryChange}
+              className="block border dark:bg-gray-800 border-gray-300 rounded-md shadow-sm focus:ring-lime-500 focus:border-lime-500 sm:text-sm"
+            >
+              <option value="all">All Categories</option>
+              {categories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
       </div>
-      </div>
-    
-      <div className="grid lg:grid-cols-3 md:grid-cols-3 gap-6 p-6 max-w-7xl mx-auto">
+
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 p-6 max-w-7xl mx-auto">
         {filteredBlogs.map((blog) => (
           <HomeCard key={blog._id} blog={blog}></HomeCard>
         ))}
