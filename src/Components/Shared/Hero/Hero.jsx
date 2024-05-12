@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Hero = () => {
   return (
     <>
-      <div className="">
+      <div className="z-50">
         <div className="mx-auto max-w-screen-2xl py-12">
           <div className="relative isolate overflow-hidden dark:bg-gray-800  px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
             <svg
@@ -46,9 +46,9 @@ const Hero = () => {
                 </Link>
                 <a
                   href="/login"
-                  className="text-sm font-semibold leading-6 dark:text-white"
+                  className="text-sm font-semibold leading-6 animate-bounce dark:text-white"
                 >
-                  Join us <span aria-hidden="true">→</span>
+                  Join us <span className="font-indie" aria-hidden="true">→</span>
                 </a>
               </div>
             </div>

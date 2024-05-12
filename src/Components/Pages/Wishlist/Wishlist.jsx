@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import WishlistCard from "../../Shared/WishlistCard/WishlistCard";
 import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
 
 const Wishlist = () => {
   const { user } = useContext(AuthContext);
@@ -28,17 +29,32 @@ const Wishlist = () => {
         <title>Khan Blog | Wishlist</title>
       </Helmet>
       <div className="max-w-7xl mx-auto my-12">
-        <h1 className="md:pl-8 md:text-6xl text-4xl font-thin md:text-start text-center">
+        <motion.h1
+          initial={{ x: "-100vw" }}
+          animate={{ x: 0 }}
+          transition={{ type: "spring", delay: 0.2, stiffness: 120 }}
+          className="md:pl-8 md:text-6xl text-4xl font-thin md:text-start text-center"
+        >
           Wishlist
-        </h1>
+        </motion.h1>
       </div>
       <div>
         {blogs.length === 0 ? (
-          <p className="text-4xl my-7 text-center font-thin">
+          <motion.p
+            initial={{ x: "100vw" }}
+            animate={{ x: 0 }}
+            transition={{ type: "spring", delay: 0.2, stiffness: 120 }}
+            className="text-4xl my-7 text-center font-thin"
+          >
             You Have No Blogs in Your Wishlist
-          </p>
+          </motion.p>
         ) : (
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 p-6 max-w-7xl mx-auto">
+          <motion.div
+            initial={{ x: "100vw" }}
+            animate={{ x: 0 }}
+            transition={{ type: "spring", delay: 0.2, stiffness: 120 }}
+            className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 p-6 max-w-7xl mx-auto"
+          >
             {blogs.map((blog) => (
               <WishlistCard
                 key={blog._id}
@@ -47,7 +63,7 @@ const Wishlist = () => {
                 setBlogs={setBlogs}
               ></WishlistCard>
             ))}
-          </div>
+          </motion.div>
         )}
       </div>
     </>

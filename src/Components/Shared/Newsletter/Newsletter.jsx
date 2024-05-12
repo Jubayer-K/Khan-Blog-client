@@ -29,7 +29,7 @@ const Newsletter = () => {
                 className="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 dark:text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                 placeholder="Enter your email"
               />
-              <Button outline gradientDuoTone="tealToLime" onClick={handleSubscribe}>Subscribe</Button>
+              <Button className='animate-bounce' outline gradientDuoTone="tealToLime" onClick={handleSubscribe}>Subscribe</Button>
             </div>
           </div>
           <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">

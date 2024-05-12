@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
 
 const AddBlog = () => {
   const { user } = useContext(AuthContext);
@@ -57,131 +58,144 @@ const AddBlog = () => {
 
   return (
     <>
-    <Helmet>
+      <Helmet>
         <title>Khan Blog | Add Blog</title>
       </Helmet>
       <div className="max-w-7xl mx-auto my-12">
-        <h1 className="md:pl-8 md:text-6xl text-4xl font-thin md:text-start text-center">Add Blog</h1>
+        <motion.h1
+          initial={{ x: "-100vw" }}
+          animate={{ x: 0 }}
+          transition={{ type: "spring", delay: 0.2, stiffness: 120 }}
+          className="md:pl-8 md:text-6xl text-4xl font-thin md:text-start text-center"
+        >
+          Add Blog
+        </motion.h1>
       </div>
-      <div className="flex flex-col lg:flex-row-reverse items-center mx-auto my-12 gap-5 shadow-2xl rounded-xl max-w-7xl">
-        <div className="w-full">
-          <img
-            className="h-full object-cover"
-            src="/addblog.png"
-            alt="blog Image"
-          />
-        </div>
-        <div className="space-y-12 w-full mx-auto p-8">
-          <form onSubmit={handleAddBlog}>
-            <div className="border-b border-gray-900/10 pb-12">
-              <div className="flex flex-col gap-4">
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="first-name"
-                    className="block text-sm font-medium leading-6  "
-                  >
-                    Title
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      required
-                      type="text"
-                      name="title"
-                      id="title"
-                      className="block w-full rounded-md border-0 py-1.5   shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
-
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="last-name"
-                    className="block text-sm font-medium leading-6  "
-                  >
-                    Image
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      required
-                      type="text"
-                      name="image_url"
-                      id="image_url"
-                      className="block w-full rounded-md border-0 py-1.5   shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="category"
-                    className="block text-sm font-medium leading-6  "
-                  >
-                    Category
-                  </label>
-                  <div className="mt-2">
-                    <select
-                      required
-                      id="category"
-                      name="category"
-                      className="block w-full rounded-md border-0 py-1.5   shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-lime-600 sm:max-w-xs sm:text-sm sm:leading-6"
+      <motion.div
+        initial={{ x: "100vw" }}
+        animate={{ x: 0 }}
+        transition={{ type: "spring", delay: 0.2, stiffness: 120 }}
+      >
+        <div className="flex flex-col lg:flex-row-reverse items-center mx-auto my-12 gap-5 shadow-2xl rounded-xl max-w-7xl">
+          <div className="w-full">
+            <img
+              className="h-full object-cover"
+              src="/addblog.png"
+              alt="blog Image"
+            />
+          </div>
+          <div className="space-y-12 w-full mx-auto p-8">
+            <form onSubmit={handleAddBlog}>
+              <div className="border-b border-gray-900/10 pb-12">
+                <div className="flex flex-col gap-4">
+                  <div className="sm:col-span-3">
+                    <label
+                      htmlFor="first-name"
+                      className="block text-sm font-medium leading-6  "
                     >
-                      <option value="Productivity">Productivity</option>
-                      <option value="Food">Food</option>
-                      <option value="Technology">Technology</option>
-                      <option value="Photography">Photography</option>
-                      <option value="Health">Health</option>
-                      <option value="Others">Others</option>
-                    </select>
+                      Title
+                    </label>
+                    <div className="mt-2">
+                      <input
+                        required
+                        type="text"
+                        name="title"
+                        id="title"
+                        className="block w-full rounded-md border-0 py-1.5   shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      />
+                    </div>
                   </div>
-                </div>
 
-                <div className="sm:col-span-2 sm:col-start-1">
-                  <label
-                    htmlFor="short_description"
-                    className="block text-sm font-medium leading-6  "
-                  >
-                    Short Description
-                  </label>
-                  <textarea
-                    required
-                    id="short_description"
-                    name="short_description"
-                    className="block w-full rounded-md border-0 py-1.5 resize-none  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  ></textarea>
-                </div>
-                <div className="sm:col-span-3 sm:col-start-1">
-                  <label
-                    htmlFor="long_description"
-                    className="block text-sm font-medium leading-6  "
-                  >
-                    Long Description
-                  </label>
-                  <textarea
-                    required
-                    id="long_description"
-                    name="long_description"
-                    className="block w-full rounded-md border-0 py-1.5   shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  ></textarea>
+                  <div className="sm:col-span-3">
+                    <label
+                      htmlFor="last-name"
+                      className="block text-sm font-medium leading-6  "
+                    >
+                      Image
+                    </label>
+                    <div className="mt-2">
+                      <input
+                        required
+                        type="text"
+                        name="image_url"
+                        id="image_url"
+                        className="block w-full rounded-md border-0 py-1.5   shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      />
+                    </div>
+                  </div>
+                  <div className="sm:col-span-3">
+                    <label
+                      htmlFor="category"
+                      className="block text-sm font-medium leading-6  "
+                    >
+                      Category
+                    </label>
+                    <div className="mt-2">
+                      <select
+                        required
+                        id="category"
+                        name="category"
+                        className="block w-full rounded-md border-0 py-1.5   shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-lime-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                      >
+                        <option value="Productivity">Productivity</option>
+                        <option value="Food">Food</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Photography">Photography</option>
+                        <option value="Health">Health</option>
+                        <option value="Others">Others</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="sm:col-span-2 sm:col-start-1">
+                    <label
+                      htmlFor="short_description"
+                      className="block text-sm font-medium leading-6  "
+                    >
+                      Short Description
+                    </label>
+                    <textarea
+                      required
+                      id="short_description"
+                      name="short_description"
+                      className="block w-full rounded-md border-0 py-1.5 resize-none  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    ></textarea>
+                  </div>
+                  <div className="sm:col-span-3 sm:col-start-1">
+                    <label
+                      htmlFor="long_description"
+                      className="block text-sm font-medium leading-6  "
+                    >
+                      Long Description
+                    </label>
+                    <textarea
+                      required
+                      id="long_description"
+                      name="long_description"
+                      className="block w-full rounded-md border-0 py-1.5   shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    ></textarea>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="mt-6 flex items-center justify-end gap-x-6">
-              <Link to={"/"}>
-                <Button
-                  outline
-                  gradientDuoTone="redToYellow"
-                  type="button"
-                  className="text-sm font-semibold leading-6  "
-                >
-                  Cancel
+              <div className="mt-6 flex items-center justify-end gap-x-6">
+                <Link to={"/"}>
+                  <Button
+                    outline
+                    gradientDuoTone="redToYellow"
+                    type="button"
+                    className="text-sm font-semibold leading-6  "
+                  >
+                    Cancel
+                  </Button>
+                </Link>
+                <Button gradientDuoTone="tealToLime" type="submit">
+                  Add Blog
                 </Button>
-              </Link>
-              <Button gradientDuoTone="tealToLime" type="submit">
-                Add Blog
-              </Button>
-            </div>
-          </form>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

@@ -8,6 +8,7 @@ import animation from "../../../assets/registeranimation2.json";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import { Button } from "flowbite-react";
 import { LuEye, LuEyeOff } from "react-icons/lu";
+import { motion } from "framer-motion";
 
 const Register = () => {
   const successToast = () => toast.success("User created Successfully");
@@ -67,7 +68,11 @@ const Register = () => {
       <Helmet>
         <title>Khan Blog | Register</title>
       </Helmet>
-      <div>
+      <motion.div
+        initial={{ x: "100vw" }}
+        animate={{ x: 0 }}
+        transition={{ type: "spring", delay: 0.2, stiffness: 120 }}
+      >
         <div className="p-8 my-12 shadow-2xl rounded-xl dark:shadow-gray-600 md:w-2/3 w-96 mx-auto">
           <div className="min-h-60 flex flex-col justify-center items-center text-center">
             <Lottie
@@ -98,7 +103,10 @@ const Register = () => {
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-semibold leading-6">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-semibold leading-6"
+                >
                   Email
                 </label>
                 <input
@@ -111,7 +119,10 @@ const Register = () => {
               </div>
             </div>
             <div className="mb-4">
-              <label htmlFor="photoURL" className="block text-sm font-semibold leading-6">
+              <label
+                htmlFor="photoURL"
+                className="block text-sm font-semibold leading-6"
+              >
                 Photo URL
               </label>
               <input
@@ -123,7 +134,10 @@ const Register = () => {
               />
             </div>
             <div className="mb-4 relative">
-              <label htmlFor="password" className="block text-sm font-semibold leading-6">
+              <label
+                htmlFor="password"
+                className="block text-sm font-semibold leading-6"
+              >
                 Password
               </label>
               <input
@@ -164,7 +178,7 @@ const Register = () => {
           )}
           {success && <p className="my-2 text-sm text-green-700">{success}</p>}
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };
