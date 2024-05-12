@@ -1,6 +1,8 @@
 import { PropTypes } from "prop-types";
 
 const TopBloggers = ({ blogs }) => {
+
+
   return (
     <>
       <div className="py-24 sm:py-32">
@@ -28,7 +30,7 @@ const TopBloggers = ({ blogs }) => {
                   />
                   <div>
                     <h3 className="text-base font-semibold leading-7 tracking-tight text-gray-900 dark:text-gray-400">
-                      {blog.author_email}
+                      {blog.author_name}
                     </h3>
                     <p className="text-sm font-semibold leading-6 text-lime-400 dark:text-lime-200">
                       {blog.author_email}

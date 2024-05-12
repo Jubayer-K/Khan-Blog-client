@@ -13,7 +13,7 @@ const AddBlog = () => {
     e.preventDefault();
     const form = e.target;
     const title = form.title.value;
-    const image = form.image.value;
+    const image_url = form.image_url.value;
     const category = form.category.value;
     const short_description = form.short_description.value;
     const long_description = form.long_description.value;
@@ -23,7 +23,7 @@ const AddBlog = () => {
 
     const newBlog = {
       title,
-      image,
+      image_url,
       category,
       short_description,
       author_email,
@@ -31,7 +31,6 @@ const AddBlog = () => {
       author_image,
       author_name,
     };
-
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/blogs`,
@@ -62,7 +61,7 @@ const AddBlog = () => {
         <title>Khan Blog | Add Blog</title>
       </Helmet>
       <div className="max-w-7xl mx-auto my-12">
-        <h1 className="md:pl-8 md:text-6xl text-4xl font-thin">Add Blog</h1>
+        <h1 className="md:pl-8 md:text-6xl text-4xl font-thin md:text-start text-center">Add Blog</h1>
       </div>
       <div className="flex flex-col lg:flex-row-reverse items-center mx-auto my-12 gap-5 shadow-2xl rounded-xl max-w-7xl">
         <div className="w-full">
@@ -105,9 +104,8 @@ const AddBlog = () => {
                     <input
                       required
                       type="text"
-                      name="image"
-                      id="image"
-                      autoComplete="image"
+                      name="image_url"
+                      id="image_url"
                       className="block w-full rounded-md border-0 py-1.5   shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
@@ -124,7 +122,6 @@ const AddBlog = () => {
                       required
                       id="category"
                       name="category"
-                      autoComplete="category-name"
                       className="block w-full rounded-md border-0 py-1.5   shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-lime-600 sm:max-w-xs sm:text-sm sm:leading-6"
                     >
                       <option value="Productivity">Productivity</option>

@@ -18,6 +18,8 @@ const BlogDetails = () => {
     long_description,
     _id,
     author_email,
+    author_image,
+    author_name,
   } = blog;
 
   useEffect(() => {
@@ -92,15 +94,38 @@ const BlogDetails = () => {
                     <dd className="inline">{long_description}</dd>
                   </div>
                 </dl>
-              </div>
-
+                <figcaption className="mt-10">
+                <h1 className="font-thin text-2xl text-center py-4">Blog By</h1>
+                  <img
+                    className="mx-auto h-10 w-10 rounded-full"
+                    src={author_image}
+                    alt=""
+                  />
+                  <div className="mt-4 flex items-center justify-center space-x-3 text-base">
+                    <div className="font-semibold text-gray-900 dark:text-gray-200">
+                      {author_name}
+                    </div>
+                    <svg
+                      viewBox="0 0 2 2"
+                      width={3}
+                      height={3}
+                      aria-hidden="true"
+                      className="fill-gray-900 dark:fill-gray-50"
+                    >
+                      <circle cx={1} cy={1} r={1} />
+                    </svg>
+                    <div className="text-gray-600 dark:text-gray-300">{author_email}</div>
+                  </div>
+                </figcaption>
               {isAuthor ? (
-                <div className="flex justify-center items-center my-12">
+                <div className="flex justify-center items-center mx-auto my-12">
                   <Link to={`/update/${_id}`}>
                     <Button gradientDuoTone="tealToLime">Update Blog</Button>
                   </Link>
                 </div>
               ) : null}
+              </div>
+
             </div>
             <img
               src={image_url}
