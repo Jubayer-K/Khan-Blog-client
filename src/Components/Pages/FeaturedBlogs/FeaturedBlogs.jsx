@@ -1,7 +1,7 @@
-import { useLoaderData } from "react-router-dom";
+// import { useLoaderData } from "react-router-dom";
 
 const FeaturedBlogs = () => {
-    const blogs = useLoaderData();
+    // const blogs = useLoaderData();
     
     return (
         <div>

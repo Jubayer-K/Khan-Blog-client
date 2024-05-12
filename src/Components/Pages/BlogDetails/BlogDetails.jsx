@@ -4,7 +4,6 @@ import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import axios from "axios";
 import { toast } from "react-toastify";
-
 const BlogDetails = () => {
   const { user } = useContext(AuthContext);
   const [comment, setComment] = useState("");
@@ -95,7 +94,9 @@ const BlogDetails = () => {
                   </div>
                 </dl>
                 <figcaption className="mt-10">
-                <h1 className="font-thin text-2xl text-center py-4">Blog By</h1>
+                  <h1 className="font-thin text-2xl text-center py-4">
+                    Blog By
+                  </h1>
                   <img
                     className="mx-auto h-10 w-10 rounded-full"
                     src={author_image}
@@ -114,25 +115,24 @@ const BlogDetails = () => {
                     >
                       <circle cx={1} cy={1} r={1} />
                     </svg>
-                    <div className="text-gray-600 dark:text-gray-300">{author_email}</div>
+                    <div className="text-gray-600 dark:text-gray-300">
+                      {author_email}
+                    </div>
                   </div>
                 </figcaption>
-              {isAuthor ? (
-                <div className="flex justify-center items-center mx-auto my-12">
-                  <Link to={`/update/${_id}`}>
-                    <Button gradientDuoTone="tealToLime">Update Blog</Button>
-                  </Link>
-                </div>
-              ) : null}
+                {isAuthor ? (
+                  <div className="flex justify-center items-center mx-auto my-12">
+                    <Link to={`/update/${_id}`}>
+                      <Button gradientDuoTone="tealToLime">Update Blog</Button>
+                    </Link>
+                  </div>
+                ) : null}
               </div>
-
             </div>
             <img
               src={image_url}
               alt="blog image"
-              className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
-              width={2432}
-              height={1442}
+              className="w-full rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
             />
           </div>
         </div>

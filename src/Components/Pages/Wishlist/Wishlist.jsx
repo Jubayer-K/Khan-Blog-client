@@ -28,19 +28,26 @@ const Wishlist = () => {
         <title>Khan Blog | Wishlist</title>
       </Helmet>
       <div className="max-w-7xl mx-auto my-12">
-        <h1 className="md:pl-8 md:text-6xl text-4xl font-thin md:text-start text-center">Wishlist</h1>
+        <h1 className="md:pl-8 md:text-6xl text-4xl font-thin md:text-start text-center">
+          Wishlist
+        </h1>
       </div>
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 p-6 max-w-7xl mx-auto">
+      <div>
         {blogs.length === 0 ? (
           <p className="text-4xl my-7 text-center font-thin">
             You Have No Blogs in Your Wishlist
           </p>
         ) : (
-          blogs.map((blog) => (
-            <WishlistCard key={blog._id} blog={blog}
-            blogs={blogs}
-            setBlogs={setBlogs}></WishlistCard>
-          ))
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 p-6 max-w-7xl mx-auto">
+            {blogs.map((blog) => (
+              <WishlistCard
+                key={blog._id}
+                blog={blog}
+                blogs={blogs}
+                setBlogs={setBlogs}
+              ></WishlistCard>
+            ))}
+          </div>
         )}
       </div>
     </>

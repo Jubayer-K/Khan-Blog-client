@@ -21,7 +21,7 @@ const TopBloggers = ({ blogs }) => {
             className="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2"
           >
             {blogs.slice(-6).map((blog) => (
-              <li key={blog.author_email}>
+              <li key={blog._id}>
                 <div className="flex items-center gap-x-6">
                   <img
                     className="h-16 w-16 rounded-full"
@@ -47,6 +47,13 @@ const TopBloggers = ({ blogs }) => {
 };
 
 TopBloggers.propTypes = {
-  blogs: PropTypes.object,
+  blogs: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string,
+      author_image: PropTypes.string,
+      author_name: PropTypes.string,
+      author_email: PropTypes.string,
+    })
+  ).isRequired,
 };
 export default TopBloggers;

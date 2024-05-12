@@ -6,6 +6,7 @@ import Newsletter from "../../Shared/Newsletter/Newsletter";
 import TopBloggers from "../../Shared/TopBloggers/TopBloggers";
 import HomeCard from "../../Shared/HomeCard/HomeCard";
 import { useLoaderData } from "react-router-dom";
+import { motion } from "framer-motion"
 
 const Home = () => {
   const blogs = useLoaderData();
@@ -14,6 +15,7 @@ const Home = () => {
       <Helmet>
         <title>Khan Blog | Home</title>
       </Helmet>
+      <motion.h1 animate={{ fontSize: 50 , scale:1.5}}>hello </motion.h1>
       <Hero></Hero>
       <h1 className="text-center text-xl md:text-4xl lg:text-6xl font-thin my-6">Recent blogs</h1>
       <div className="grid lg:grid-cols-3 md:grid-cols-3 gap-6 p-6 max-w-7xl mx-auto">

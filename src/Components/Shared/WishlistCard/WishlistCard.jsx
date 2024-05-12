@@ -1,11 +1,11 @@
+import axios from "axios";
 import { Button, Card } from "flowbite-react";
 import { PropTypes } from "prop-types";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const WishlistCard = ({ blog, blogs, setBlogs }) => {
-  const { title, image_url, category, short_description, wishlistId, _id } =
-    blog;
+  const { title, image_url, category, short_description, wishlistId, _id } = blog;
 
   const handleDelete = (_id) => {
     Swal.fire({
@@ -18,11 +18,10 @@ const WishlistCard = ({ blog, blogs, setBlogs }) => {
       confirmButtonText: "Confirm",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`${import.meta.env.VITE_API_URL}/wishlist/${_id}`, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
-          .then((data) => {
+        axios
+          .delete(`${import.meta.env.VITE_API_URL}/wishlist/${_id}`)
+          .then((response) => {
+            const { data } = response;
             if (data.deleteCount > 0) {
               Swal.fire({
                 title: "Deleted!",
@@ -32,6 +31,14 @@ const WishlistCard = ({ blog, blogs, setBlogs }) => {
             }
             const remaining = blogs.filter((blog) => blog._id !== _id);
             setBlogs(remaining);
+          })
+          .catch((error) => {
+            console.error("Error deleting item:", error);
+            Swal.fire({
+              title: "Error",
+              text: "An error occurred while deleting the item.",
+              icon: "error",
+            });
           });
       }
     });
