@@ -11,6 +11,7 @@ import { AuthContext } from "../../../Providers/AuthProviders";
 import { useContext } from "react";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
+import axios from "axios";
 
 const NavigationBar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -18,7 +19,11 @@ const NavigationBar = () => {
     toast.success(` ${user.displayName} has been logged out`);
   const handleLogOut = () => {
     logOut()
-      .then(() => {
+      .then(async () => {
+        const { data } = await axios(`${import.meta.env.VITE_API_URL}/logout`, {
+          withCredentials: true,
+        });
+        console.log(data);
         logOutToast();
       })
       .catch();
