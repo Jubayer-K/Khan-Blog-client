@@ -9,6 +9,7 @@ import { AuthContext } from "../../../Providers/AuthProviders";
 import { Button } from "flowbite-react";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 import { motion } from "framer-motion";
+import axios from "axios";
 
 const Register = () => {
   const successToast = () => toast.success("User created Successfully");
@@ -36,7 +37,6 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const photoURL = form.photoURL.value;
-    console.log(name, email, password);
     setRegisterError("");
     setSuccess("");
     if (password.length < 6) {
@@ -54,14 +54,27 @@ const Register = () => {
     }
 
     createUser(email, password, name, photoURL)
-      .then(() => {
-        setSuccess("User created Successfully");
+    .then(async () => {
+      try {
+        const { data } = await axios.post(
+          `${import.meta.env.VITE_API_URL}/jwt`,
+          {
+            email: email,
+          },
+          { withCredentials: true }
+        );
+        console.log(data);
+        setSuccess("User created successfully");
         successToast();
-      })
-      .catch((error) => {
+      } catch (error) {
         setRegisterError(error.message);
-        errorToast("User creation Unsuccessful !");
-      });
+        errorToast("User creation unsuccessful!");
+      }
+    })
+    .catch((error) => {
+      setRegisterError(error.message);
+      errorToast("User creation unsuccessful!");
+    });
   };
   return (
     <>

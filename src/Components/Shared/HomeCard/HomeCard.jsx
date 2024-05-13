@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../Providers/AuthProviders";
+import { motion } from "framer-motion";
 
 const HomeCard = ({ blog }) => {
   const { user } = useContext(AuthContext);
@@ -48,12 +49,17 @@ const HomeCard = ({ blog }) => {
     }
   };
   return (
-    <>
+    <motion.div
+      whileHover={{ scale: 1.02, originY: 0, color: "#f8e112" }}
+      transition={{ type: "spring", stiffness: 300 }}
+    >
       <Card
         className="max-w-sm drop-shadow-xl"
         imgAlt="decorative"
         imgSrc={image_url}
+        href={`/blog-details/${_id}`}
       >
+        <Link to={`/blog-details/${_id}`}>
         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           {title}
         </h5>
@@ -66,6 +72,7 @@ const HomeCard = ({ blog }) => {
         <p className="font-normal text-gray-700 dark:text-gray-400">
           {short_description}
         </p>
+        </Link>
         <div className="flex gap-4 items-center">
           <Link to={`/blog-details/${_id}`}>
             <Button outline gradientDuoTone="tealToLime">
@@ -82,7 +89,7 @@ const HomeCard = ({ blog }) => {
           </Button>
         </div>
       </Card>
-    </>
+    </motion.div>
   );
 };
 

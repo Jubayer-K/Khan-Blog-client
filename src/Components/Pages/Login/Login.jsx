@@ -18,6 +18,7 @@ import { LuEye, LuEyeOff } from "react-icons/lu";
 import { FaGoogle, FaTwitter } from "react-icons/fa";
 import LoadingSkeleton from "../../Shared/LoadingSkeleton/LoadingSkeleton";
 import { motion } from "framer-motion";
+import axios from "axios";
 
 const Login = () => {
   const successToast = () => toast.success("User Logged In Successfully");
@@ -62,7 +63,15 @@ const Login = () => {
     }
 
     logIn(email, password)
-      .then(() => {
+      .then(async () => {
+        const { data } = await axios.post(
+          `${import.meta.env.VITE_API_URL}/jwt`,
+          {
+            email: provider?.user?.email,
+          },
+          { withCredentials: true }
+        );
+        console.log(data);
         navigate(location?.state ? location.state : "/login");
         setSuccess("User Logged in Successfully");
         successToast();
@@ -80,7 +89,15 @@ const Login = () => {
     setRegisterError("");
     setSuccess("");
     signInWithPopup(auth, provider)
-      .then(() => {
+      .then(async () => {
+        const { data } = await axios.post(
+          `${import.meta.env.VITE_API_URL}/jwt`,
+          {
+            email: provider?.user?.email,
+          },
+          { withCredentials: true }
+        );
+        console.log(data);
         successToast();
         setSuccess("User Logged In Successfully");
       })
@@ -94,7 +111,15 @@ const Login = () => {
     setRegisterError("");
     setSuccess("");
     signInWithPopup(auth, xProvider)
-      .then(() => {
+      .then(async () => {
+        const { data } = await axios.post(
+          `${import.meta.env.VITE_API_URL}/jwt`,
+          {
+            email: provider?.user?.email,
+          },
+          { withCredentials: true }
+        );
+        console.log(data);
         successToast();
         setSuccess("User Logged In Successfully");
       })

@@ -65,6 +65,9 @@ const BlogDetails = () => {
       setComments([...comments, data]);
       setComment("");
       toast.success("Comment Posted");
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     } catch (err) {
       console.log(err);
     }
