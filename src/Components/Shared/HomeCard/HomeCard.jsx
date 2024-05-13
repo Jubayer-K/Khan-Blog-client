@@ -41,9 +41,9 @@ const HomeCard = ({ blog }) => {
         wishlistData
       );
       console.log("Added to wishlist:", wishlistData);
-      toast.success("blog added to your wishlist");
+      toast.success("Blog Added to your Wishlist");
     } catch (error) {
-      toast.error("blog already added");
+      toast.error("Error adding to wishlist");
       console.error("Error adding to wishlist:", error);
     }
   };
@@ -73,6 +73,7 @@ const HomeCard = ({ blog }) => {
             </Button>
           </Link>
           <Button
+            disabled={!user}
             outline
             gradientDuoTone="purpleToBlue"
             onClick={addToWishlist}
