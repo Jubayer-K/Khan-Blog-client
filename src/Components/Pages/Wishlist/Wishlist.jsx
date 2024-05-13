@@ -13,7 +13,8 @@ const Wishlist = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/my-wishlist/${user.email}`
+          `${import.meta.env.VITE_API_URL}/my-wishlist/${user.email}`,
+          { withCredentials: true }
         );
         setBlogs(response.data);
       } catch (error) {

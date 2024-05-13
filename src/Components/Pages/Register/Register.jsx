@@ -9,7 +9,6 @@ import { AuthContext } from "../../../Providers/AuthProviders";
 import { Button } from "flowbite-react";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 import { motion } from "framer-motion";
-import axios from "axios";
 
 const Register = () => {
   const successToast = () => toast.success("User created Successfully");
@@ -54,16 +53,8 @@ const Register = () => {
     }
 
     createUser(email, password, name, photoURL)
-    .then(async () => {
+    .then(() => {
       try {
-        const { data } = await axios.post(
-          `${import.meta.env.VITE_API_URL}/jwt`,
-          {
-            email: email,
-          },
-          { withCredentials: true }
-        );
-        console.log(data);
         setSuccess("User created successfully");
         successToast();
       } catch (error) {
