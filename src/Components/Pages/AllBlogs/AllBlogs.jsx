@@ -1,25 +1,28 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
 import HomeCard from "../../Shared/HomeCard/HomeCard";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import LoadingSkeleton from "../../Shared/LoadingSkeleton/LoadingSkeleton";
 
 const AllBlogs = () => {
-  const allBlogs = useLoaderData();
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredBlogsByCategory =
-    selectedCategory === "all"
-      ? allBlogs
-      : allBlogs.filter((blog) => blog.category === selectedCategory);
+  const {
+    data: allBlogsData,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryFn: fetchAllBlogs,
+    queryKey: "allBlogs",
+  });
 
-  const filteredBlogs =
-    searchQuery === ""
-      ? filteredBlogsByCategory
-      : filteredBlogsByCategory.filter((blog) =>
-          blog.title.toLowerCase().includes(searchQuery.toLowerCase())
-        );
+  async function fetchAllBlogs() {
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/blogs`);
+    return response.data;
+  }
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
@@ -29,8 +32,23 @@ const AllBlogs = () => {
     setSearchQuery(event.target.value);
   };
 
-  const categories = [...new Set(allBlogs.map((blog) => blog.category))];
+  const categories = allBlogsData
+    ? [...new Set(allBlogsData.map((blog) => blog.category))]
+    : [];
 
+  const filteredBlogsByCategory =
+    selectedCategory === "all"
+      ? allBlogsData
+      : allBlogsData.filter((blog) => blog.category === selectedCategory);
+
+  const filteredBlogs =
+    searchQuery === ""
+      ? filteredBlogsByCategory
+      : filteredBlogsByCategory.filter((blog) =>
+          blog.title.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+
+  if (isLoading) return <LoadingSkeleton></LoadingSkeleton>;
   return (
     <>
       <div>
@@ -79,9 +97,13 @@ const AllBlogs = () => {
           transition={{ type: "spring", delay: 0.2, stiffness: 120 }}
         >
           <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 p-6 max-w-7xl mx-auto">
-            {filteredBlogs.map((blog) => (
-              <HomeCard key={blog._id} blog={blog}></HomeCard>
-            ))}
+            {isLoading && <p>Loading...</p>}
+            {isError && <p>Error fetching blogs.</p>}
+            {!isLoading &&
+              !isError &&
+              filteredBlogs.map((blog) => (
+                <HomeCard key={blog._id} blog={blog}></HomeCard>
+              ))}
           </div>
         </motion.div>
       </div>

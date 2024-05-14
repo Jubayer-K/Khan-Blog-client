@@ -57,13 +57,11 @@ const HomeCard = ({ blog }) => {
         className="max-w-sm drop-shadow-xl"
         imgAlt="decorative"
         imgSrc={image_url}
-        href={`/blog-details/${_id}`}
       >
-        <Link to={`/blog-details/${_id}`}>
         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           {title}
         </h5>
-        <h5 className="text-xlfont-thin font-karla">
+        <h5 className="text-xl font-thin font-karla">
           Category :{" "}
           <span className="text-lime-500 dark:text-lime-300 text-base font-bold tracking-tight ">
             {category}
@@ -72,7 +70,6 @@ const HomeCard = ({ blog }) => {
         <p className="font-normal text-gray-700 dark:text-gray-400">
           {short_description}
         </p>
-        </Link>
         <div className="flex gap-4 items-center">
           <Link to={`/blog-details/${_id}`}>
             <Button outline gradientDuoTone="tealToLime">

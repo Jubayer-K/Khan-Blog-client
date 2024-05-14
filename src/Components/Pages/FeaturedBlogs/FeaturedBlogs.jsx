@@ -1,26 +1,25 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import MUIDataTable from "mui-datatables";
 import { Button } from "flowbite-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import LoadingSkeleton from "../../Shared/LoadingSkeleton/LoadingSkeleton";
 
 const FeaturedBlogs = () => {
-  const [blogs, setBlogs] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/featured`
-        );
-        setBlogs(response.data);
-      } catch (error) {
-        console.error("Error fetching blogs:", error);
-      }
-    };
+  const { data: blogs, isLoading, isError } = useQuery({
+    queryFn: fetchFeaturedBlogs,
+    queryKey: "featuredBlogs",
+  });
 
-    fetchData();
-  }, []);
+  async function fetchFeaturedBlogs() {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/featured`);
+      return response.data;
+    } catch (error) {
+      throw new Error("Error fetching featured blogs");
+    }
+  }
 
   const columns = [
     {
@@ -74,9 +73,9 @@ const FeaturedBlogs = () => {
     rowsPerPageOptions: false,
     pagination: false,
     download: false,
-    print:false
+    print: false,
   };
-
+  if (isLoading) return <LoadingSkeleton></LoadingSkeleton>;
   return (
     <>
       <div className="my-12 max-w-7xl mx-auto ">
@@ -94,7 +93,9 @@ const FeaturedBlogs = () => {
           transition={{ type: "spring", delay: 0.2, stiffness: 120 }}
           className="overflow-x-auto drop-shadow-xl rounded-lg"
         >
-          <MUIDataTable data={blogs} columns={columns} options={options} />
+          {isLoading && <p>Loading...</p>}
+          {isError && <p>Error fetching blogs.</p>}
+          {!isLoading && !isError && <MUIDataTable data={blogs} columns={columns} options={options} />}
         </motion.div>
       </div>
     </>
