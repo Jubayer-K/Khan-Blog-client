@@ -1,22 +1,45 @@
 # Khan Blog
 
-Welcome to Khan Blog! This is a platform where you can explore insightful articles, thought-provoking essays, and engaging content on a wide range of topics. Whether you're interested in technology, science, culture, or lifestyle, Khan Blog has something for everyone.
+Welcome to Khan Blog! This is a React-based website aimed at providing a seamless and interactive blogging experience. With a range of modern UI components and functionalities, Khan Blog makes it easy for you to create, share, and explore captivating content.
 
-## Live Site URL
-[Visit Khan Blog](https://eleveth-assignment-khan-blog.web.app)
+## Live Demo
+[Khan Blog](https://eleventh-assignment-khan-blog.web.app).
 
 ## Features
 
-- **Diverse Content**: From in-depth analyses to light-hearted anecdotes, Khan Blog offers a diverse range of content to cater to various interests and preferences.
-  
-- **Expert Contributors**: Our team of expert contributors includes professionals and enthusiasts passionate about sharing their knowledge and perspectives, ensuring high-quality content with every read.
+- **Responsive Design:** Khan Blog is built with responsiveness in mind, ensuring a smooth experience across various devices and screen sizes.
+- **Rich UI Components:** Leveraging packages like `@mui/material`, `@heroicons/react`, and `framer-motion`, Khan Blog offers visually appealing and interactive UI elements.
+- **Efficient Data Management:** Utilizing `@tanstack/react-query` and `axios`, Khan Blog ensures efficient data fetching and state management, providing a seamless browsing experience.
+- **Enhanced User Experience:** With features like `react-intersection-observer` for lazy loading and `react-toastify` for notifications, Khan Blog prioritizes user experience.
+- **Dynamic Routing:** Powered by `react-router-dom`, Khan Blog enables smooth navigation between different sections and pages of the website.
 
-- **Interactive Community**: Engage with like-minded individuals through comments, discussions, and sharing features. Khan Blog fosters a vibrant community where ideas are exchanged and connections are made.
+## Packages Used
 
-- **Regular Updates**: Stay informed and entertained with regular updates and fresh content. Khan Blog is committed to keeping you engaged with the latest insights and trends.
+- **[@emotion/react](https://www.npmjs.com/package/@emotion/react)**
+- **[@emotion/styled](https://www.npmjs.com/package/@emotion/styled)**
+- **[@headlessui/react](https://www.npmjs.com/package/@headlessui/react)**
+- **[@heroicons/react](https://www.npmjs.com/package/@heroicons/react)**
+- **[@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material)**
+- **[@mui/material](https://www.npmjs.com/package/@mui/material)**
+- **[@tanstack/react-query](https://www.npmjs.com/package/@tanstack/react-query)**
+- **[axios](https://www.npmjs.com/package/axios)**
+- **[firebase](https://www.npmjs.com/package/firebase)**
+- **[flowbite-react](https://www.npmjs.com/package/flowbite-react)**
+- **[framer-motion](https://www.npmjs.com/package/framer-motion)**
+- **[localforage](https://www.npmjs.com/package/localforage)**
+- **[lottie-react](https://www.npmjs.com/package/lottie-react)**
+- **[match-sorter](https://www.npmjs.com/package/match-sorter)**
+- **[mui-datatables](https://www.npmjs.com/package/mui-datatables)**
+- **[prop-types](https://www.npmjs.com/package/prop-types)**
+- **[react](https://www.npmjs.com/package/react)**
+- **[react-dom](https://www.npmjs.com/package/react-dom)**
+- **[react-helmet-async](https://www.npmjs.com/package/react-helmet-async)**
+- **[react-icons](https://www.npmjs.com/package/react-icons)**
+- **[react-intersection-observer](https://www.npmjs.com/package/react-intersection-observer)**
+- **[react-photo-view](https://www.npmjs.com/package/react-photo-view)**
+- **[react-router-dom](https://www.npmjs.com/package/react-router-dom)**
+- **[react-toastify](https://www.npmjs.com/package/react-toastify)**
+- **[sort-by](https://www.npmjs.com/package/sort-by)**
+- **[sweetalert2](https://www.npmjs.com/package/sweetalert2)**
+- **[swiper](https://www.npmjs.com/package/swiper)**
 
-- **User-Friendly Interface**: Enjoy a seamless browsing experience with our intuitive and user-friendly interface. Whether you're accessing Khan Blog from your desktop or mobile device, navigating through our site is easy and enjoyable.
-
-## Get Involved
-
-Join the Khan Blog community today! Whether you're a reader looking for engaging content or a writer eager to share your expertise, there's a place for you here. Explore our articles, connect with fellow enthusiasts, and embark on a journey of discovery with Khan Blog.
