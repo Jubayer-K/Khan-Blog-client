@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Button } from "flowbite-react";
+import { Helmet } from "react-helmet-async";
 import { Link, useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -48,6 +49,9 @@ const Update = () => {
   };
   return (
     <>
+    <Helmet>
+        <title>Khan Blog | Update Blog</title>
+      </Helmet>
       <div className="flex flex-col lg:flex-row items-center mx-auto my-12 gap-5 shadow-2xl rounded-xl max-w-7xl">
       <div className="w-full">
             <img className="h-full object-cover" src={image_url} alt="blog Image" />

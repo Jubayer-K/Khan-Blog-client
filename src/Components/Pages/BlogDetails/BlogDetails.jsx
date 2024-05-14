@@ -4,6 +4,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 const BlogDetails = () => {
   const { user } = useContext(AuthContext);
   const [comment, setComment] = useState("");
@@ -76,6 +77,9 @@ const BlogDetails = () => {
   const isAuthor = author_email === user.email;
   return (
     <>
+    <Helmet>
+        <title>Khan Blog | Details</title>
+      </Helmet>
       <div className="overflow-hidden py-24 sm:py-32 mx-auto">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">

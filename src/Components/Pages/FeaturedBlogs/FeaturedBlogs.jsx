@@ -5,6 +5,7 @@ import { Button } from "flowbite-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import LoadingSkeleton from "../../Shared/LoadingSkeleton/LoadingSkeleton";
+import { Helmet } from "react-helmet-async";
 
 const FeaturedBlogs = () => {
   const { data: blogs, isLoading, isError } = useQuery({
@@ -78,6 +79,9 @@ const FeaturedBlogs = () => {
   if (isLoading) return <LoadingSkeleton></LoadingSkeleton>;
   return (
     <>
+    <Helmet>
+        <title>Khan Blog | Featured Blogs</title>
+      </Helmet>
       <div className="my-12 max-w-7xl mx-auto ">
         <motion.h1
           initial={{ x: "-100vw" }}
