@@ -17,7 +17,7 @@ Follow these steps to clone and set up the project locally:
 
 2. **Navigate to the Project Directory:**
    ```bash
-   cd repository-name
+   cd Khan-Blog-client
 
 3. **Install Dependencies:**
    ```bash
