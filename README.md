@@ -5,6 +5,28 @@ Welcome to Khan Blog! This is a React-based website aimed at providing a seamles
 ## Live Demo
 [Khan Blog](https://eleventh-assignment-khan-blog.web.app).
 
+
+### Cloning the Repository
+
+Follow these steps to clone and set up the project locally:
+
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/Jubayer-K/Khan-Blog-client.git
+
+
+2. **Navigate to the Project Directory:**
+   ```bash
+   cd repository-name
+
+3. **Install Dependencies:**
+   ```bash
+   npm install
+   
+3. **To start the development server, run:**
+   ```bash
+   npm run dev
+
 ## Features
 
 - **Responsive Design:** Khan Blog is built with responsiveness in mind, ensuring a smooth experience across various devices and screen sizes.
